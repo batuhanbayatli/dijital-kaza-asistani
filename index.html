@@ -2,373 +2,96 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kaza Asistanı | Batuhan Bayatlı</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acente Link Üretici // Dijital Kaza Asistanı</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        :root {
-            --bg-color: #1a1a1a;
-            --text-color: #f0f0f0;
-            --primary: #3498db;
-            --success: #2ecc71;
-            --danger: #e74c3c;
-            --warning: #f39c12;
-            --card-bg: #2c3e50;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            overflow-x: hidden;
-            box-sizing: border-box;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 450px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        
-        .step { display: none; animation: fadeIn 0.4s ease-in-out; }
-        .step.active { display: block; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h1 { font-size: 26px; margin-bottom: 10px; font-weight: 700; }
-        p { font-size: 16px; line-height: 1.6; color: #bbb; margin-bottom: 25px; }
-
-        
-        .card {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            text-align: left;
-        }
-
-        .checklist-item { margin-bottom: 12px; display: flex; align-items: center; font-size: 15px; }
-        .checklist-item i { margin-right: 12px; width: 20px; text-align: center; color: var(--primary); }
-        .checklist-item input { margin-right: 15px; transform: scale(1.4); }
-
-        
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 18px;
-            margin-bottom: 15px;
-            border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-            box-sizing: border-box;
-            transition: 0.2s;
-        }
-        
-        .btn:active { transform: scale(0.97); }
-        .btn-primary { background-color: var(--primary); }
-        .btn-success { background-color: var(--success); }
-        .btn-danger { background-color: var(--danger); }
-        .btn-outline { background: transparent; border: 2px solid #555; color: #aaa; }
-        
-        
-        .alert-box {
-            background: rgba(231, 76, 60, 0.2);
-            border-left: 4px solid var(--danger);
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            text-align: left;
-        }
-
-        .camera-btn {
-            background: #444;
-            border: 2px dashed #666;
-            color: #ddd;
-            padding: 30px;
-            border-radius: 15px;
-            cursor: pointer;
-            margin-bottom: 10px;
-            display: block;
-        }
-        input[type="file"] { display: none; }
-        .loading { font-size: 14px; color: var(--warning); display: none; margin-top: 10px; }
-
-        
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 999;
-            overflow-y: auto; /* Kaydırma */
-            padding: 20px;
-            box-sizing: border-box;
-            animation: fadeIn 0.3s;
-        }
-        .modal-content {
-            background: #222;
-            padding: 20px;
-            border-radius: 15px;
-            max-width: 500px;
-            margin: 20px auto;
-            text-align: left;
-            position: relative;
-        }
-        .close-modal-btn {
-            position: sticky;
-            top: 0;
-            background: var(--danger);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            margin-bottom: 20px;
-            z-index: 1000;
-        }
-        .modal-step-num {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            width: 24px; height: 24px;
-            border-radius: 50%;
-            text-align: center; line-height: 24px;
-            margin-right: 10px; font-weight: bold; font-size: 14px;
-        }
-        
-        details { background: #333; padding: 10px; border-radius: 8px; margin-top: 15px; }
-        summary { cursor: pointer; color: var(--success); font-weight: bold; outline: none; }
-        .example-img { width: 100%; height: auto; border-radius: 5px; margin-top: 10px; border: 1px solid #555; }
-
-        
-        footer {
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-            font-size: 12px;
-            color: #666;
-            width: 100%;
-        }
-        .agency-link-btn {
-            display: inline-block;
-            background: #333; color: #bbb;
-            padding: 10px 20px; border-radius: 20px;
-            text-decoration: none; font-size: 13px;
-            margin-bottom: 15px; border: 1px solid #444;
-        }
-        footer a { color: #888; text-decoration: none; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+        * { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
     </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between antialiased selection:bg-blue-600 selection:text-white p-4">
 
-    <div class="container">
-
-        <div id="step-1" class="step active">
-            <div style="font-size: 50px; margin-bottom: 20px;">👋</div>
-            <h1>Geçmiş Olsun.</h1>
-            <p>Sakin olun. Sizi adım adım yönlendireceğim. Amacımız süreci hatasız tamamlamak.</p>
-            <button class="btn btn-primary" onclick="nextStep(2)">Başlayalım <i class="fas fa-arrow-right" style="margin-left:10px"></i></button>
-        </div>
-
-        <div id="step-2" class="step">
-            <div style="font-size: 50px; margin-bottom: 20px;">🚑</div>
-            <h1>Yaralanan Var mı?</h1>
-            <p>Kendinizi ve diğer araçtakileri kontrol edin. En ufak şüpheniz varsa 112'yi arayın.</p>
-            <a href="tel:112" class="btn btn-danger"><i class="fas fa-phone"></i> EVET - 112'yi Ara</a>
-            <button class="btn btn-success" onclick="nextStep(3)">HAYIR - Herkes İyi</button>
-        </div>
-
-        <div id="step-3" class="step">
-            <h1>Önce Güvenlik ⚠️</h1>
-            <div class="card">
-                <div class="checklist-item"><i class="fas fa-exclamation-triangle" style="color:var(--warning)"></i> Dörtlüleri yakın.</div>
-                <div class="checklist-item"><i class="fas fa-vest"></i> Varsa reflektör koyun.</div>
-                <div class="checklist-item"><i class="fas fa-car-crash"></i> Başka kazaya sebep olmayacak bir yerde durun.</div>
+    
+    <header class="max-w-md w-full mx-auto flex items-center justify-between pb-3 border-b border-slate-800">
+        <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
+                <i data-lucide="link" class="w-4 h-4"></i>
             </div>
-            <div class="alert-box">
-                <strong>DİKKAT:</strong> Tutanak tutulana veya polis gelene kadar araçları yerinden OYNATMAYIN (Trafiği tamamen tıkamıyorsa).
+            <div>
+                <span class="font-extrabold text-sm text-white tracking-tight">Link Oluşturucu</span>
+                <span class="text-[9px] block text-slate-400 font-bold uppercase tracking-wider">bGroup // SigortamRahat</span>
             </div>
-            <button class="btn btn-primary" onclick="nextStep(4)">Güvenliği Aldım, Devam</button>
-            <button class="btn btn-outline" onclick="prevStep(2)">Geri</button>
         </div>
+        <a href="index.html" class="text-xs font-bold text-slate-400 hover:text-white transition">← Asistana Dön</a>
+    </header>
 
-        <div id="step-4" class="step">
-            <h1>Fotoğraflar 📸</h1>
-            <p>Sigorta şirketi için en kritik adım.</p>
-            <div class="card">
-                <div class="checklist-item"><input type="checkbox"> Geniş açıdan kaza anı (4 köşe)</div>
-                <div class="checklist-item"><input type="checkbox"> Plakalar görünecek şekilde hasar</div>
-                <div class="checklist-item"><input type="checkbox"> Şerit çizgileri ve yol durumu</div>
+    
+    <main class="max-w-md w-full mx-auto my-auto py-6">
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl space-y-4">
+            <div>
+                <h1 class="text-lg font-black text-white tracking-tight">Acentenize Özel Link Oluşturun</h1>
+                <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Müşterilerinize WhatsApp üzerinden veya poliçe zarfında gönderebileceğiniz size özel asistan linkini oluşturun.
+                </p>
             </div>
-            <label class="camera-btn" for="cameraInput">
-                <i class="fas fa-camera fa-2x"></i><br>Kamerayı Aç
-            </label>
-            <input type="file" id="cameraInput" accept="image/*" capture="environment">
-            <button class="btn btn-primary" onclick="nextStep(5)">Fotoğrafları Çektim</button>
-            <button class="btn btn-outline" onclick="prevStep(3)">Geri</button>
-        </div>
 
-        <div id="step-5" class="step">
-            <h1>Tutanak & Evraklar 📝</h1>
-            <div class="card">
-                <div class="checklist-item"><i class="fas fa-id-card"></i> Karşı tarafın Ehliyetini isteyin.</div>
-                <div class="checklist-item"><i class="fas fa-file-contract"></i> Ruhsatını ve Poliçesini isteyin.</div>
-                <div class="checklist-item"><i class="fas fa-pen"></i> Kaza Tespit Tutanağını doldurun.</div>
-                <div class="checklist-item"><i class="fas fa-signature"></i> İmzaları atmayı unutmayın!</div>
-                
-                <button onclick="openModal()" style="margin-top:15px; background:transparent; border:1px solid #3498db; color:#3498db; padding:10px; border-radius:8px; font-weight:bold; width:100%; cursor:pointer;">
-                    <i class="fas fa-question-circle"></i> Tutanak Nasıl Doldurulur?
+            <div>
+                <label class="block text-xs font-bold text-slate-300 mb-1.5">Acente WhatsApp Numarası</label>
+                <input type="number" id="phoneInput" placeholder="Örn: 905XXXXXXXXX" class="w-full px-3.5 py-3 bg-slate-950 border border-slate-800 rounded-xl text-xs font-mono text-white outline-none focus:border-blue-500 transition">
+                <span class="text-[10px] text-slate-500 mt-1 block">Başında 90 olacak şekilde 12 haneli yazınız.</span>
+            </div>
+
+            <button onclick="createLink()" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                <i data-lucide="sparkles" class="w-4 h-4"></i> Acente Linkimi Oluştur
+            </button>
+
+            
+            <div id="resultBox" class="hidden bg-slate-950 border border-emerald-500/30 p-4 rounded-xl space-y-2.5">
+                <span class="text-[11px] font-bold text-emerald-400 block">Müşteri Linkiniz Hazır:</span>
+                <div id="generatedLink" class="text-xs font-mono text-slate-300 break-all bg-slate-900 p-2.5 rounded-lg border border-slate-800"></div>
+                <button onclick="copyLink()" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg transition flex items-center justify-center gap-1.5">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i> Linki Kopyala
                 </button>
             </div>
-            <button class="btn btn-success" onclick="prepareWhatsApp()">Her Şey Tamam <i class="fas fa-check" style="margin-left:10px"></i></button>
-            <button class="btn btn-outline" onclick="prevStep(4)">Geri</button>
         </div>
+    </main>
 
-        <div id="step-6" class="step">
-            <div style="font-size: 50px; margin-bottom: 20px;">📍</div>
-            <h1>Konum Gönder</h1>
-            <p>Acentenize durumu bildirin. WhatsApp açıldığında, az önce çektiğiniz fotoğrafları sohbete ekleyin.</p>
-            <button class="btn btn-success" onclick="sendWhatsApp()">
-                <i class="fab fa-whatsapp" style="margin-right:10px"></i> WhatsApp'ı Aç & Gönder
-            </button>
-            <div id="locStatus" class="loading">Konum alınıyor...</div>
-            <br>
-            <button class="btn btn-outline" onclick="location.reload()">Başa Dön</button>
-        </div>
-
-    </div>
-
-    <div id="tutanakModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="close-modal-btn" onclick="closeModal()">❌ REHBERİ KAPAT (Asistana Dön)</button>
-            
-            <h2 style="color:var(--primary); margin-top:0;">📝 Tutanak Rehberi</h2>
-
-            <div class="alert-box" style="margin-top:20px;">
-                <strong style="color:var(--danger)">⚠️ DİKKAT: POLİS ÇAĞIRIN!</strong>
-                <p style="font-size:13px; color:#ccc; margin-top:5px;">Aşağıdakilerden BİRİ varsa tutanak tutmayın:</p>
-                <ul style="font-size:13px; color:#bbb; padding-left:15px; text-align:left;">
-                    <li>Yaralanma veya ölüm varsa</li>
-                    <li>Sürücü ehliyetsiz veya alkollüyse</li>
-                    <li>Kamu malına zarar verildiyse</li>
-                </ul>
-                <a href="tel:112" class="btn btn-danger" style="padding:10px; font-size:14px; margin-top:10px;">POLİSİ ARA (112)</a>
-            </div>
-
-            <div style="text-align:left; color:#ddd;">
-                <p><span class="modal-step-num">1</span> <strong>A ve B Aracı:</strong> Kimin A kimin B olacağına karar verip o sütunu doldurun.</p>
-                <p><span class="modal-step-num">2</span> <strong>Belgeler:</strong> T.C. No ve Şasi No'yu ruhsattan bakarak hatasız yazın.</p>
-                <p><span class="modal-step-num">3</span> <strong>Çizim:</strong> Araçları kutucuk olarak çizin, gidiş yönünü okla (➡) gösterin.</p>
-                <p><span class="modal-step-num">4</span> <strong>İMZA:</strong> En alttaki iki kutuyu da ıslak imza ile imzalayın. İmzasız tutanak geçersizdir!</p>
-            </div>
-
-            <details>
-                <summary>📸 Örnek Doldurulmuş Tutanak</summary>
-                <img src="ornek.jpg" class="example-img" alt="Örnek Tutanak">
-                <p style="font-size:10px; color:#777; margin-top:5px;">*Temsili görseldir.</p>
-            </details>
-        </div>
-    </div>
-
-    <footer>
-        <a href="olustur.html" class="agency-link-btn"><i class="fas fa-link"></i> Acente misiniz? Link Oluşturun</a>
-        <p>Geliştirici: <a href="https://www.linkedin.com/in/batuhanbayatlı/" target="_blank"><strong>Batuhan Bayatlı</strong></a></p>
-        <details style="background:none; border:none; padding:0;">
-            <summary style="font-size:12px; color:#666; text-align:center; justify-content:center;">Yasal Uyarı & Gizlilik</summary>
-            <div style="font-size:11px; color:#555; margin-top:10px;">
-                Bu uygulama verileri kaydetmez. Sorumluluk kullanıcıya aittir. 112 yerine geçmez.
-            </div>
-        </details>
+    
+    <footer class="max-w-md w-full mx-auto border-t border-slate-900 pt-3 text-center text-[10px] text-slate-500">
+        <p>Geliştirici: <a href="https://www.linkedin.com/in/batuhanbayatlı/" target="_blank" class="text-blue-400 font-bold">Batuhan Bayatlı</a></p>
+        <p class="text-[9px] text-slate-600 mt-0.5">Girdiğiniz telefon numarası sunucuya kaydedilmez. Tamamen istemci taraflı işlenir.</p>
     </footer>
 
     <script>
-        const DEFAULT_PHONE = ""; 
-        const urlParams = new URLSearchParams(window.location.search);
-        let agencyPhone = urlParams.get('tel') || DEFAULT_PHONE;
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+        });
 
-        // Sayfa geçişleri
-        function nextStep(step) {
-            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-            document.getElementById('step-' + step).classList.add('active');
-        }
+        function createLink() {
+            const phoneInput = document.getElementById('phoneInput');
+            let phone = phoneInput.value.replace(/\s/g, '');
 
-        function prevStep(step) {
-            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-            document.getElementById('step-' + step).classList.add('active');
-        }
-
-        
-        function openModal() {
-            document.getElementById('tutanakModal').style.display = 'block';
-        }
-        function closeModal() {
-            document.getElementById('tutanakModal').style.display = 'none';
-        }
-
-        
-        let mapLink = "";
-        let finalMessage = "Merhaba, bir kaza geçirdim. Durumum iyi. Fotoğrafları çektim, bu mesajın altına ekleyip göndereceğim.";
-
-        function prepareWhatsApp() {
-            nextStep(6);
-            const statusDiv = document.getElementById('locStatus');
-            statusDiv.style.display = 'block';
-            
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        const lat = position.coords.latitude;
-                        const lng = position.coords.longitude;
-                        mapLink = `https://maps.google.com/?q=${lat},${lng}`;
-                        statusDiv.innerHTML = "Konum alındı ✅";
-                        statusDiv.style.color = "#2ecc71";
-                    },
-                    (error) => {
-                        statusDiv.innerHTML = "GPS kapalı, sadece mesaj gönderilecek.";
-                        statusDiv.style.color = "#e74c3c";
-                    },
-                    { enableHighAccuracy: true }
-                );
-            } else {
-                statusDiv.innerHTML = "Konum desteklenmiyor.";
-            }
-        }
-
-        function sendWhatsApp() {
-            if (!agencyPhone) {
-                alert("HATA: Acente numarası bulunamadı.");
+            if (phone.length < 10) {
+                alert("Lütfen geçerli bir numara giriniz.");
                 return;
             }
-            let textToSend = finalMessage;
-            if (mapLink) textToSend += " Konumum: " + mapLink;
-            window.location.href = `https://wa.me/${agencyPhone}?text=${encodeURIComponent(textToSend)}`;
+
+            let baseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
+            if (baseUrl.endsWith('olustur.html')) baseUrl = baseUrl.replace('/olustur.html', '');
+
+            const finalUrl = `${baseUrl}/index.html?tel=${phone}`;
+            document.getElementById('generatedLink').textContent = finalUrl;
+            document.getElementById('resultBox').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function copyLink() {
+            const linkText = document.getElementById('generatedLink').textContent;
+            navigator.clipboard.writeText(linkText).then(() => alert("Acente kaza asistanı linkiniz panoya kopyalandı!"));
         }
     </script>
 </body>
