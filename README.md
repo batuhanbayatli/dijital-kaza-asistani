@@ -1,56 +1,53 @@
-# 🚗 Kaza Anı Dijital Asistanı ve Link Oluşturucu (Insurtech Project)
+# 🚗 Dijital Kaza Asistanı // Akıllı Triyaj & Hasar Bildirim Motoru
+> **bGroup // SigortamRahat × DATEX Tasarım**  
+> *Sigorta Acenteleri İçin Serverless, KVKK Dostu, Canlı GPS Konum ve Fotoğraf Entegrasyonlu Mobil Kaza Rehberi*
 
-**Küçük ve orta ölçekli sigorta acenteleri için geliştirilmiş, sunucu gerektirmeyen (serverless), kaza anında müşteriyi adım adım yönlendiren mobil web asistanı.**
+<p align="left">
+  <a href="https://dijital-kaza-asistani.vercel.app/"><img src="https://img.shields.io/badge/Canlı%20Demo-Vercel-2563eb?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel Canlı Demo"></a>
+  <img src="https://img.shields.io/badge/Ecosystem-bGroup-0f172a?style=for-the-badge" alt="bGroup">
+  <img src="https://img.shields.io/badge/Partners-SigortamRahat%20%C3%97%20DATEX-2563eb?style=for-the-badge" alt="Marka İş Birliği">
+  <img src="https://img.shields.io/badge/Architecture-Serverless%20%2F%20SPA-059669?style=for-the-badge" alt="Architecture">
+  <img src="https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge" alt="License">
+</p>
 
-## 🎯 Projenin Amacı
-Sigorta müşterileri kaza anında panik yaşar, ne yapacaklarını unutur ve genellikle eksik evrakla acentelerine dönerler. Bu proje:
-1.  **Panik Yönetimi:** Müşteriyi sakinleştirir ve "Triage" (Önceliklendirme) mantığıyla yönlendirir.
-2.  **Veri Kaybını Önleme:** Tutanak rehberi **Modal (Popup)** olarak açılır, böylece müşteri sayfadan ayrılmadan yardım alır ve girdiği veriler kaybolmaz.
-3.  **Hızlı İletişim:** Konum ve kaza bilgisini tek tuşla acentenin WhatsApp'ına iletir.
+---
 
-## 🚀 Özellikler
-* **📱 Mobile First & SPA:** Tamamen mobil cihazlar için optimize edilmiş, sayfa yenilemesi gerektirmeyen Tek Sayfa Uygulama (Single Page Application).
-* **📷 Entegre Kamera:** `capture="environment"` özelliği ile uygulama içinden direkt arka kamera açılır.
-* **📝 İnteraktif Tutanak Rehberi:** Müşteri takıldığı anda "Nasıl Doldurulur?" butonuna basar, rehber bir pencere (modal) olarak açılır. Örnek doldurulmuş tutanak görseli (`ornek.jpg`) içerir.
-* **📍 Geolocation & WhatsApp API:** Koordinatları alır, Google Maps linkine çevirir ve acenteye hazır mesaj taslağı oluşturur.
-* **🔒 %100 Gizlilik (Privacy First):** Sunucu veya veritabanı yoktur. Tüm veriler kullanıcının telefonunda işlenir. KVKK/GDPR uyumludur.
-* **🔗 Dinamik Link Sistemi:** Acenteler sisteme kaydolmadan, URL parametreleri ile kendilerine özel link oluşturabilirler.
+## 📌 Proje Özeti
 
-## 🛠️ Nasıl Çalışır?
-Sistem temel olarak 3 dosyadan oluşur:
+**Dijital Kaza Asistanı**, trafik kazası anında müşterilerin yaşadığı panik ortamında hak kaybı yaşamalarını önlemek, süreci adım adım yönlendirmek ve eksiksiz hasar verisini acenteye ulaştırmak için geliştirilmiş **sunucusuz (Serverless & Client-Side)** bir mobil web uygulamasıdır[cite: 1, 3].
 
-1.  **`olustur.html` (Acente Paneli):**
-    * Acente telefon numarasını girer.
-    * Sistem, acenteye özel bir link üretir (Örn: `site.com/?tel=90555...`).
-    * Acente bu linki müşterisine iletir veya Instagram biosuna ekler.
+Uygulama; can güvenliği triyajından başlayarak çevre güvenliği, kamera ile olay yeri fotoğraflama, interaktif kaza tutanağı doldurma rehberi ve tek tıkla canlı GPS koordinatlı WhatsApp hasar bildirimi süreçlerini sıfır veri kaybıyla yürütür[cite: 3].
 
-2.  **`index.html` (Müşteri Asistanı):**
-    * Müşteri linke tıkladığında "Kaza Sihirbazı" açılır.
-    * Adımlar: Sağlık Kontrolü -> Güvenlik -> Fotoğraflama -> Tutanak -> Gönderim.
-    * Rehber ihtiyacında sayfa değişmez, popup açılır.
-    * "Gönder" butonuna basıldığında URL'deki numara okunur ve o numaraya WhatsApp mesajı atılır.
+---
 
-3.  **`ornek.jpg` (Asset):**
-    * Tutanak rehberi içinde gösterilen örnek kaza tutanağı görselidir.
+## ✨ Öne Çıkan Özellikler
 
-## 💻 Teknolojiler
-Maksimum performans ve uyumluluk için "Vanilla" teknolojiler kullanılmıştır.
-* **HTML5** (Semantik yapı, Input Capture)
-* **CSS3** (Flexbox, CSS Animations, Responsive Design, Modal Logic)
-* **JavaScript (ES6)** (DOM Manipulation, Geolocation API, URLSearchParams)
+* 🚑 **Acil Durum & Can Güvenliği Triyajı:** Kazazedeyi sakinleştirir; yaralanma durumunda doğrudan 112 Acil Yardım hattını aratır.
+* 📸 **Entegre Kamera Erişimi:** Web tarayıcısı üzerinden doğrudan arka kamerayı tetikleyerek plaka, fren izi ve 4 köşe fotoğraflarının doğru çekilmesini sağlar[cite: 3].
+* 📝 **İnteraktif Tutanak Rehberi (Modal):** Sayfa yenilenmeden açılan rehber; polis çağrılması gereken istisnai halleri ve örnek doldurulmuş tutanak görselini (`ornek.jpg`) barındırır[cite: 2, 3].
+* 📍 **Canlı Geolocation & WhatsApp Köprüsü:** Tek tuşla kazanın gerçekleştiği enlem ve boylamı Google Maps bağlantısına çevirip acentenin WhatsApp hattına iletir[cite: 3].
+* 🔒 **%100 KVKK & Gizlilik Uyumlu (Serverless):** Hiçbir veritabanı kaydı tutulmaz. Tüm işlemler istemci cihazında gerçekleşir[cite: 1, 3].
+* 🔗 **Acente Link Üretici (`olustur.html`):** Acentelerin kayıt olmadan sadece telefon numaralarını girerek kendilerine özel bağlantı üretmelerine olanak tanır[cite: 2, 3].
 
-## ⚠️ Yasal Uyarı
-Bu uygulama, sigortacılık süreçlerini kolaylaştırmak amacıyla geliştirilmiş bir **arayüz projesidir**.
-* Uygulama acil durum çağrısı (112) yerine geçmez.
-* Geliştirici, oluşabilecek maddi hasar veya hukuki süreçlerden sorumlu değildir.
-* Veri güvenliği açısından sunucu tabanlı kayıt tutulmamaktadır.
+---
 
-## 👨‍💻 Geliştirici
-**Batuhan Bayatlı** *Financial Analyst & InsurTech Developer | Bridging Finance with Data Strategy | Python, SQL & Web | 🇯🇵 🇹🇷
+## 🛠️ Teknoloji Yığını
 
-[LinkedIn Profilim](https://www.linkedin.com/in/batuhanbayatlı/)
+* **Arayüz / Tasarım:** Mobile-First Responsive HTML5, Tailwind CSS[cite: 3]
+* **İkonografi:** Lucide Icons CDN
+* **Web API'leri:** Geolocation API (GPS), HTML5 Media Capture API (`capture="environment"`), URLSearchParams[cite: 3]
+* **Mantık & Triyaj Motoru:** Vanilla ES6+ JavaScript (State-in-URL mimarisi)[cite: 3]
+* **Dağıtım / CI-CD:** Vercel Edge Network
 
-## 👨‍💻 Geliştirici
-**Batuhan Bayatlı** *Insurtech Enthusiast & Front-End Developer* Banking and Insurance Student @ Istanbul Kultur University
+---
 
-[LinkedIn Profilim](https://www.linkedin.com/in/batuhanbayatlı/)
+## 🚀 Yerel Kurulum ve Çalıştırma
+
+```bash
+# Repoyu klonlayın
+git clone [https://github.com/batuhanbayatli/dijital-kaza-asistani.git](https://github.com/batuhanbayatli/dijital-kaza-asistani.git)
+
+# Proje dizinine geçin
+cd dijital-kaza-asistani
+
+# index.html veya olustur.html dosyasını tarayıcınızda açın!
