@@ -3,89 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaza Asistanı - Link Oluşturucu | Batuhan Bayatlı</title>
+    <title>Acente Link Üretici // Dijital Kaza Asistanı</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: #f4f6f8;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            color: #333;
-        }
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-        }
-        input {
-            width: 100%; padding: 15px; margin-bottom: 15px;
-            border: 2px solid #ecf0f1; border-radius: 8px; font-size: 16px; box-sizing: border-box;
-        }
-        button {
-            width: 100%; padding: 15px; border: none; border-radius: 8px;
-            font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s;
-        }
-        .btn-create { background: #3498db; color: white; }
-        .btn-create:hover { background: #2980b9; }
-        
-        .result-area { margin-top: 20px; display: none; background: #e8f6f3; padding: 15px; border-radius: 8px; }
-        .link-text { word-break: break-all; color: #27ae60; font-family: monospace; font-size: 13px; display: block; margin-bottom: 10px;}
-        .btn-copy { background: #27ae60; color: white; }
-
-        footer { margin-top: 30px; font-size: 12px; color: #999; text-align: center; line-height: 1.5; }
-        footer a { color: #777; text-decoration: none; border-bottom: 1px dotted #ccc; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+        * { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
     </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between antialiased selection:bg-blue-600 selection:text-white p-4">
 
-    <div class="card">
-        <h2>🔗 Link Oluşturucu</h2>
-        <p style="color:#7f8c8d; font-size:14px;">Müşterilerinize göndereceğiniz "Kaza Asistanı" linkini oluşturmak için numaranızı girin.</p>
-
-        <input type="number" id="phoneInput" placeholder="Örn: 905551234567">
-        <button class="btn-create" onclick="createLink()">Linkimi Oluştur</button>
-
-        <div id="resultBox" class="result-area">
-            <span id="generatedLink" class="link-text"></span>
-            <button class="btn-copy" onclick="copyLink()">Kopyala</button>
+    <!-- HEADER -->
+    <header class="max-w-md w-full mx-auto flex items-center justify-between pb-3 border-b border-slate-800">
+        <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
+                <i data-lucide="link" class="w-4 h-4"></i>
+            </div>
+            <div>
+                <span class="font-extrabold text-sm text-white tracking-tight">Link Oluşturucu</span>
+                <span class="text-[9px] block text-slate-400 font-bold uppercase tracking-wider">bGroup // SigortamRahat</span>
+            </div>
         </div>
-    </div>
+        <a href="index.html" class="text-xs font-bold text-slate-400 hover:text-white transition">← Asistana Dön</a>
+    </header>
 
-    <footer>
-        <p>Geliştirici: <a href="https://www.linkedin.com/in/batuhanbayatlı/" target="_blank">Batuhan Bayatlı</a></p>
-        <p><strong>Gizlilik Notu:</strong> Girdiğiniz telefon numarası sunucularımıza kaydedilmez.<br>Sadece link oluşturmak için tarayıcınızda işlenir.</p>
+    <!-- FORM KARTI -->
+    <main class="max-w-md w-full mx-auto my-auto py-6">
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl space-y-4">
+            <div>
+                <h1 class="text-lg font-black text-white tracking-tight">Acentenize Özel Link Oluşturun</h1>
+                <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Müşterilerinize WhatsApp üzerinden veya poliçe zarfında gönderebileceğiniz size özel asistan linkini oluşturun.
+                </p>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-slate-300 mb-1.5">Acente WhatsApp Numarası</label>
+                <input type="number" id="phoneInput" placeholder="Örn: 905XXXXXXXXX" class="w-full px-3.5 py-3 bg-slate-950 border border-slate-800 rounded-xl text-xs font-mono text-white outline-none focus:border-blue-500 transition">
+                <span class="text-[10px] text-slate-500 mt-1 block">Başında 90 olacak şekilde 12 haneli yazınız.</span>
+            </div>
+
+            <button onclick="createLink()" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                <i data-lucide="sparkles" class="w-4 h-4"></i> Acente Linkimi Oluştur
+            </button>
+
+            <!-- SONUÇ ALANI -->
+            <div id="resultBox" class="hidden bg-slate-950 border border-emerald-500/30 p-4 rounded-xl space-y-2.5">
+                <span class="text-[11px] font-bold text-emerald-400 block">Müşteri Linkiniz Hazır:</span>
+                <div id="generatedLink" class="text-xs font-mono text-slate-300 break-all bg-slate-900 p-2.5 rounded-lg border border-slate-800"></div>
+                <button onclick="copyLink()" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg transition flex items-center justify-center gap-1.5">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i> Linki Kopyala
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="max-w-md w-full mx-auto border-t border-slate-900 pt-3 text-center text-[10px] text-slate-500">
+        <p>Geliştirici: <a href="https://www.linkedin.com/in/batuhanbayatlı/" target="_blank" class="text-blue-400 font-bold">Batuhan Bayatlı</a></p>
+        <p class="text-[9px] text-slate-600 mt-0.5">Girdiğiniz telefon numarası sunucuya kaydedilmez. Tamamen istemci taraflı işlenir.</p>
     </footer>
 
     <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+        });
+
         function createLink() {
             const phoneInput = document.getElementById('phoneInput');
-            let phone = phoneInput.value.replace(/\s/g, ''); 
+            let phone = phoneInput.value.replace(/\s/g, '');
 
             if (phone.length < 10) {
-                alert("Lütfen geçerli bir numara girin.");
+                alert("Lütfen geçerli bir numara giriniz.");
                 return;
             }
 
             let baseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
-            if(baseUrl.endsWith('olustur.html')) baseUrl = baseUrl.replace('/olustur.html', '');
-            
+            if (baseUrl.endsWith('olustur.html')) baseUrl = baseUrl.replace('/olustur.html', '');
+
             const finalUrl = `${baseUrl}/index.html?tel=${phone}`;
             document.getElementById('generatedLink').textContent = finalUrl;
-            document.getElementById('resultBox').style.display = 'block';
+            document.getElementById('resultBox').classList.remove('hidden');
+            lucide.createIcons();
         }
 
         function copyLink() {
             const linkText = document.getElementById('generatedLink').textContent;
-            navigator.clipboard.writeText(linkText).then(() => alert("Link kopyalandı!"));
+            navigator.clipboard.writeText(linkText).then(() => alert("Acente kaza asistanı linkiniz panoya kopyalandı!"));
         }
     </script>
 </body>
